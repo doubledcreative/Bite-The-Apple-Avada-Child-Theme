@@ -123,19 +123,28 @@ iframe{border:none!important;}
 /* Social Element Icons */
 .ddc-social-icons{margin-top: 30px;}
 
-/* Flip Box Element */
-.ddc-flip-box{margin-bottom: 0!important;
-	.flip-box-inner-wrapper{margin-bottom: 0!important;
-		.flip-box-back{padding:20px!important; min-height: 260px; display: table!important;
-			.flip-box-back-inner{display: table-cell; vertical-align: middle;}
-		}
-	}	
-	.ddc-button{.font1(); display: inline-block!important; .border-radius();}
+/* Flip Box - Column Adjustment & Greyscale */
+.ddc-column-flip-box{margin-bottom: 1%!important; -webkit-filter:grayscale(1)!important;filter:grayscale(1)!important;
+	&:hover{-webkit-filter:grayscale(0)!important;filter:grayscale(0)!important;.transition (@transition: all 0.4s ease-in-out)}
 }
 
-/* Flip Box - Column Adjustment */
-.ddc-column-flip-box{margin-bottom: 1%!important;}
-
+/* Flip Box Element */
+.ddc-flip-box{margin-bottom: 0!important; min-height: 260px;
+	.fusion-flip-box-wrapper{
+		.fusion-flip-box{
+			.flip-box-inner-wrapper{margin-bottom: 0!important;
+				.flip-box-front{padding:20px!important; min-height: 260px; display: table!important;
+					.flip-box-front-inner{display: table-cell; vertical-align: middle;}
+				}
+				.flip-box-back{padding:20px!important; min-height: 260px; display: table!important;
+					.flip-box-back-inner{display: table-cell; vertical-align: middle;
+						.ddc-button{.font1(); display: inline-block!important; .border-radius();}
+					}
+				}
+			}
+		}
+	}		
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -173,7 +182,7 @@ iframe{border:none!important;}
 	.fusion-menu{
 		.menu-item{border-bottom: 1px solid @grey1;
 			.sub-menu{
-				.menu-item{border-bottom: none!important; display: table; width: 260px;
+				.menu-item{border-bottom: none!important; display: table;width:300px;
 					a{.font1(); font-weight:600!important; height: 62px; display: table-cell; vertical-align: middle;}
 				}
 			}
@@ -183,37 +192,33 @@ iframe{border:none!important;}
 
 
 /* Mobile Navigation */
-
 .fusion-mobile-menu-design-modern{line-height: 0!important;
 	.fusion-mobile-menu-icons {margin: 0 -3px!important; padding: 2px 0!important;}
 }
-
 .fusion-mobile-nav-holder{
-	
 	.fusion-menu{
-		
 		.fusion-open-submenu{
 			&:before{color: @green2!important;}
 		}
-		
 		.fusion-mobile-current-nav-item > a {color: @white!important;
 			&:before{color: @white!important;}
 		}
-
+		.fusion-mobile-current-nav-item{
+			.fusion-open-submenu{
+				&:before{color: @white!important;}
+			}
+		}
 		.fusion-mobile-nav-item{		
-			
 			a{.font1(); font-weight:600!important;
 				&:hover{color: @white!important;}
 			}
-			
 			.sub-menu{
-				a{.font1(); font-weight:100!important; font-size: 16px!important;
+				a{.font1(); font-size: 16px!important;
 					&:hover{color: @white!important;
 						&:before{color: @white!important;}
 					}
 				}
 			}
-			
 		}
 	}	
 }
@@ -335,15 +340,24 @@ iframe{border:none!important;}
 	/* GLOBAL STYLES */
 	
 	/* Flip Box Element */
-	.ddc-flip-box{margin-bottom: 0!important;
-		.flip-box-inner-wrapper{margin-bottom: 0!important;
-			.flip-box-back{padding: 50px!important; min-height: 400px; display: table!important;
-				.flip-box-back-inner{display: table-cell; vertical-align: middle;}
+	.ddc-flip-box{margin-bottom: 0!important; min-height: 400px;
+		.fusion-flip-box-wrapper{
+			.fusion-flip-box{
+				.flip-box-inner-wrapper{margin-bottom: 0!important;
+					.flip-box-front{padding:50px!important; min-height: 400px; display: table!important;
+						.flip-box-front-inner{display: table-cell; vertical-align: middle;}
+					}
+					.flip-box-back{padding:50px!important; min-height: 400px; display: table!important;
+						.flip-box-back-inner{display: table-cell; vertical-align: middle;
+							.ddc-button{.font1(); display: inline-block!important; .border-radius();}
+						}
+					}
+				}
 			}
-		}	
+		}		
 	}
 	
-	
+		
 }	
 
 
@@ -365,6 +379,7 @@ iframe{border:none!important;}
 		.fusion-one-third{margin-right: 1.5%!important; clear: none!important; width: calc(50% - ( ( 1.5% ) * 0.5 ) )!important;
 			&:nth-of-type(2n){margin-right:0!important; clear: none!important; float: right;}
 		}
+		
 	}
 
 		
@@ -439,12 +454,21 @@ iframe{border:none!important;}
 	}
 	
 	/* Flip Box Element */
-	.ddc-flip-box{margin-bottom: 0!important;
-		.flip-box-inner-wrapper{margin-bottom: 0!important;
-			.flip-box-back{padding:20px!important; min-height: 400px; display: table!important;
-				.flip-box-back-inner{display: table-cell; vertical-align: middle;}
+	.ddc-flip-box{margin-bottom: 0!important; min-height: 400px;
+		.fusion-flip-box-wrapper{
+			.fusion-flip-box{
+				.flip-box-inner-wrapper{margin-bottom: 0!important;
+					.flip-box-front{padding:20px!important; min-height: 400px; display: table!important;
+						.flip-box-front-inner{display: table-cell; vertical-align: middle;}
+					}
+					.flip-box-back{padding:20px!important; min-height: 400px; display: table!important;
+						.flip-box-back-inner{display: table-cell; vertical-align: middle;
+							.ddc-button{.font1(); display: inline-block!important; .border-radius();}
+						}
+					}
+				}
 			}
-		}	
+		}		
 	}
 	
 	/* Footer - Copyright Area Padding */
@@ -514,19 +538,27 @@ iframe{border:none!important;}
 		}
 	}
 	
-	
 	/* Flip Box Element */
-	.ddc-flip-box{margin-bottom: 0!important;
-		.flip-box-inner-wrapper{margin-bottom: 0!important;
-			.flip-box-back{padding:20px!important; min-height: 260px; display: table!important;
-				.flip-box-back-inner{display: table-cell; vertical-align: middle;}
+	.ddc-flip-box{margin-bottom: 0!important; min-height: 260px;
+		.fusion-flip-box-wrapper{
+			.fusion-flip-box{
+				.flip-box-inner-wrapper{margin-bottom: 0!important;
+					.flip-box-front{padding:20px!important; min-height: 260px; display: table!important;
+						.flip-box-front-inner{display: table-cell; vertical-align: middle;}
+					}
+					.flip-box-back{padding:20px!important; min-height: 260px; display: table!important;
+						.flip-box-back-inner{display: table-cell; vertical-align: middle;
+							.ddc-button{.font1(); display: inline-block!important; .border-radius();}
+						}
+					}
+				}
 			}
-		}	
-	}
-		
+		}		
+	}	
+			
 	/* Flip Box - Column Adjustment */
 	.ddc-container-flip-box{
-		.ddc-column-flip-box{margin-bottom: 1%!important;}
+		.ddc-column-flip-box{margin-bottom: 0!important;}
 		.fusion-one-third{margin-right:0!important; width: 100%!important;}
 	}
 	

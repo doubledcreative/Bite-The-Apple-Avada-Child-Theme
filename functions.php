@@ -20,7 +20,7 @@ function childtheme_scripts() {
 wp_enqueue_style('less', get_stylesheet_directory_uri() .'/css/style.less');
 add_filter('style_loader_tag', 'my_style_loader_tag_function');
 
-wp_enqueue_script('less', get_stylesheet_directory_uri() .'/scripts/less.min.js', array('jquery'),'2.5.0');
+wp_enqueue_script('less', get_stylesheet_directory_uri() .'/scripts/less.min.js', array('jquery'),'2.7.1');
 
 }
 add_action('wp_enqueue_scripts','childtheme_scripts', 150);
@@ -29,18 +29,27 @@ function my_style_loader_tag_function($tag){
   return preg_replace("/='stylesheet' id='less-css'/", "='stylesheet/less' id='less-css'", $tag);
 }
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+/* Load Fonts dot com */
+
+function extra_css () {
+	wp_register_style( 'font', '//fast.fonts.net/cssapi/b65e2d33-3d9f-4682-bdd7-861bb751faf2.css' );
+	wp_enqueue_style( 'font' );
+} 
+
+add_action('wp_print_styles', 'extra_css');
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /* Remove Date from Yoast SEO */
 
 add_filter( 'wpseo_show_date_in_snippet_preview', false);
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
 
-add_shortcode( 'divider', 'shortcode_insert_divider' );
-function shortcode_insert_divider( ) {
-return '<div class="divider"></div>';
-}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -124,4 +133,31 @@ function gform_form_input_autocomplete( $input, $field, $value, $lead_id, $form_
 		$input = preg_replace( '/<(input|textarea)/', '<${1} autocomplete="off" ', $input ); 
 	}
 	return $input;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+/* If Modified Since */
+
+add_action('template_redirect', 'last_mod_header');
+
+function last_mod_header($headers) {
+     if( is_singular() ) {
+            $post_id = get_queried_object_id();
+            $LastModified = gmdate("D, d M Y H:i:s \G\M\T", $post_id);
+            $LastModified_unix = gmdate("D, d M Y H:i:s \G\M\T", $post_id);
+            $IfModifiedSince = false;
+            if( $post_id ) {
+                if (isset($_ENV['HTTP_IF_MODIFIED_SINCE']))
+                    $IfModifiedSince = strtotime(substr($_ENV['HTTP_IF_MODIFIED_SINCE'], 5));  
+                if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']))
+                    $IfModifiedSince = strtotime(substr($_SERVER['HTTP_IF_MODIFIED_SINCE'], 5));
+                if ($IfModifiedSince && $IfModifiedSince >= $LastModified_unix) {
+                    header($_SERVER['SERVER_PROTOCOL'] . ' 304 Not Modified');
+                    exit;
+                } 
+     header("Last-Modified: " . get_the_modified_time("D, d M Y H:i:s", $post_id) );
+                }
+        }
 }
